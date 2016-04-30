@@ -1,0 +1,51 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 30/04/2016 09:39
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-alien-space-character-of-pixels-for-a-game:before { content: "\f100"; }
+.flaticon-pixelated-alien:before { content: "\f101"; }
+.flaticon-pixelated-alien-1:before { content: "\f102"; }
+.flaticon-space-game-character-of-pixels:before { content: "\f103"; }
+.flaticon-transport:before { content: "\f104"; }
+.flaticon-transport-1:before { content: "\f105"; }
+    
+    $font-Flaticon-alien-space-character-of-pixels-for-a-game: "\f100";
+    $font-Flaticon-pixelated-alien: "\f101";
+    $font-Flaticon-pixelated-alien-1: "\f102";
+    $font-Flaticon-space-game-character-of-pixels: "\f103";
+    $font-Flaticon-transport: "\f104";
+    $font-Flaticon-transport-1: "\f105";
