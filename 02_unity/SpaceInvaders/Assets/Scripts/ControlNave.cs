@@ -7,6 +7,12 @@ public class ControlNave : MonoBehaviour
 	// Velocidad a la que se desplaza la nave (medido en u/s)
 	private float velocidad = 20f;
 
+	// Fuerza de lanzamiento del disparo
+	private float fuerza = 0.5f;
+
+	// Acceso al prefab del disparo
+	public Rigidbody2D disparo;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -53,7 +59,17 @@ public class ControlNave : MonoBehaviour
 
 	void disparar ()
 	{
-		Debug.Log ("¡Boom!");
+		// Hacemos copias del prefab del disparo y las lanzamos
+		Rigidbody2D d = (Rigidbody2D)Instantiate (disparo, transform.position, transform.rotation);
+
+		// Desactivar la gravedad para este objeto, si no, ¡se cae!
+		d.gravityScale = 0;
+
+		// Posición de partida, en la punta de la nave
+		d.transform.Translate (Vector2.up * 0.7f);
+
+		// Lanzarlo
+		d.AddForce (Vector2.up * fuerza, ForceMode2D.Impulse);	
 	}
 
 }
