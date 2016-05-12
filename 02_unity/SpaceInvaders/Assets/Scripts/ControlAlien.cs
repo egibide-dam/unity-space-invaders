@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ControlAlien : MonoBehaviour
 {
+	public float velocidad;
 	// Conexión al marcador, para poder actualizarlo
 	public GameObject marcador;
 
@@ -15,11 +16,23 @@ public class ControlAlien : MonoBehaviour
 		// Localizamos el objeto que contiene el marcador
 		marcador = GameObject.Find ("Marcador");
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
 	{
-	
+		// Calculamos la anchura visible de la cámara en pantalla
+		float distanciaHorizontal = Camera.main.orthographicSize * Screen.width / Screen.height;
+
+		// Calculamos el límite izquierdo y el derecho de la pantalla
+		float limiteIzq = -1.0f * distanciaHorizontal;
+		float limiteDer = 1.0f * distanciaHorizontal;
+
+		if (this.transform.position.x >= limiteDer) {
+			this.transform.position = new Vector2 (limiteIzq, this.transform.position.y - 1.0f);
+
+		}
+		this.transform.position = new Vector2 (this.transform.position.x + velocidad, this.transform.position.y);
+
 	}
 
 	void OnCollisionEnter2D (Collision2D coll)

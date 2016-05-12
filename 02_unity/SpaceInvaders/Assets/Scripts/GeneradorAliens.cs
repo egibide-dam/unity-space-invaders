@@ -17,7 +17,7 @@ public class GeneradorAliens : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-	
+
 	}
 
 	void generarAliens (int filas, int columnas, float espacioH, float espacioV, float escala = 1.0f)

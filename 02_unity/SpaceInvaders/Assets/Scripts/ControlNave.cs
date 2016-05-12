@@ -13,6 +13,10 @@ public class ControlNave : MonoBehaviour
 	// Acceso al prefab del disparo
 	public Rigidbody2D disparo;
 
+	//gameOver
+
+	public GameObject gameOver;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -55,6 +59,8 @@ public class ControlNave : MonoBehaviour
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			disparar ();
 		}
+
+
 	}
 
 	void disparar ()
@@ -72,4 +78,19 @@ public class ControlNave : MonoBehaviour
 		d.AddForce (Vector2.up * fuerza, ForceMode2D.Impulse);	
 	}
 
+	// jugador pierde
+	void OnCollisionEnter2D (Collision2D coll)
+	{
+		// Detectar la colisión entre la nave y otros elementos
+
+		// Necesitamos saber contra qué hemos chocado
+		if (coll.gameObject.tag == "alien") {
+
+
+			gameOver.SetActive( true);
+
+			// ... y lo destruímos al cabo de 5 segundos, para dar tiempo al efecto de sonido
+			Destroy (gameObject, 5f);
+		}
+	}
 }
