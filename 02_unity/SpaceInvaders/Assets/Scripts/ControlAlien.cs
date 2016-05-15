@@ -4,14 +4,18 @@ using System.Collections;
 public class ControlAlien : MonoBehaviour
 {
 	public float velocidad;
+    public void pararAlien ()
+    {
+        velocidad = 0;
+    }
 	// Conexión al marcador, para poder actualizarlo
 	public GameObject marcador;
 
 	// Por defecto, 100 puntos por cada alien
 	public int puntos = 100;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
 	{
 		// Localizamos el objeto que contiene el marcador
 		marcador = GameObject.Find ("Marcador");
@@ -27,6 +31,8 @@ public class ControlAlien : MonoBehaviour
 		float limiteIzq = -1.0f * distanciaHorizontal;
 		float limiteDer = 1.0f * distanciaHorizontal;
 
+       
+        // mover aliens
 		if (this.transform.position.x >= limiteDer) {
 			this.transform.position = new Vector2 (limiteIzq, this.transform.position.y - 1.0f);
 

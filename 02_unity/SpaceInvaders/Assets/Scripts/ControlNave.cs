@@ -81,16 +81,30 @@ public class ControlNave : MonoBehaviour
 	// jugador pierde
 	void OnCollisionEnter2D (Collision2D coll)
 	{
-		// Detectar la colisión entre la nave y otros elementos
+        // Detectar la colisión entre la nave y otros elementos
 
-		// Necesitamos saber contra qué hemos chocado
-		if (coll.gameObject.tag == "alien") {
+        // Necesitamos saber contra qué hemos chocado
+        if (coll.gameObject.tag == "alien") {
 
 
-			gameOver.SetActive( true);
+            gameOver.SetActive(true);
 
-			// ... y lo destruímos al cabo de 5 segundos, para dar tiempo al efecto de sonido
-			Destroy (gameObject, 5f);
+            // parar los aliens.
+        //   GameObject[] aliens;
+          //  aliens = GameObject.Find("Alien1");
+                   var aliens = GameObject.FindGameObjectsWithTag("alien");
+                foreach (GameObject a in aliens) { 
+
+            a.GetComponent<ControlAlien>().velocidad = 0;
+     }
+            // destruir nave
+            Destroy (gameObject);
+
+
+
 		}
 	}
+
+
+
 }
