@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 9773b90f379c6cd46b23476d695f5594
+timeCreated: 1463408413
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - laser: {fileID: 195508, guid: 3eea188d620117945b70b115fec27256, type: 2}
+  - slaser: {fileID: 197374, guid: 15af17520f33a4041bc7d0a293742999, type: 2}
+  - shot: {instanceID: 0}
+  - mine: {instanceID: 0}
+  - shocker: {instanceID: 0}
+  - disparador: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
