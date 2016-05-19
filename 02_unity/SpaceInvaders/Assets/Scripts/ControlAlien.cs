@@ -1,19 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ControlAlien : MonoBehaviour
 {
+	
+
+
 	// Conexión al marcador, para poder actualizarlo
-	public GameObject marcador;
+	private GameObject marcador;
 
 	// Por defecto, 100 puntos por cada alien
-	public int puntos = 100;
+
+	private int puntos1 = 100;
+	private int puntos2 = 200;
+	private int puntos3 = 300;
+	// Objeto para reproducir la explosión de un alien
+	private GameObject efectoExplosion;
 
 	// Use this for initialization
 	void Start ()
 	{
 		// Localizamos el objeto que contiene el marcador
 		marcador = GameObject.Find ("Marcador");
+
+		// Objeto para reproducir la explosión de un alien
+		efectoExplosion = GameObject.Find ("EfectoExplosion");
 	}
 	
 	// Update is called once per frame
@@ -29,23 +41,57 @@ public class ControlAlien : MonoBehaviour
 		// Necesitamos saber contra qué hemos chocado
 		if (coll.gameObject.tag == "disparo") {
 
-			// Sonido de explosión
-			GetComponent<AudioSource> ().Play ();
+			if (gameObject.tag == "alien1") {
+				// Sonido de explosión
+				GetComponent<AudioSource> ().Play ();
 
-			// Sumar la puntuación al marcador
-			marcador.GetComponent<ControlMarcador> ().puntos += puntos;
+				// Sumar la puntuación al marcador
+				marcador.GetComponent<ControlMarcador> ().puntos += puntos1;
 
-			// El disparo desaparece (cuidado, si tiene eventos no se ejecutan)
-			Destroy (coll.gameObject);
+				// El disparo desaparece (cuidado, si tiene eventos no se ejecutan)
+				Destroy (coll.gameObject);
 
-			// El alien desaparece (hay que añadir un retraso, si no, no se oye la explosión)
+				// El alien desaparece (no hace falta retraso para la explosión, está en otro objeto)
+				efectoExplosion.GetComponent<AudioSource> ().Play ();
+				Destroy (gameObject);
+			} else if (gameObject.tag == "alien2") {
+				// Sonido de explosión
+				GetComponent<AudioSource> ().Play ();
 
-			// Lo ocultamos...
-			GetComponent<Renderer> ().enabled = false;
-			GetComponent<Collider2D> ().enabled = false;
+				// Sumar la puntuación al marcador
+				marcador.GetComponent<ControlMarcador> ().puntos += puntos2;
 
-			// ... y lo destruímos al cabo de 5 segundos, para dar tiempo al efecto de sonido
-			Destroy (gameObject, 5f);
-		}
+				// El disparo desaparece (cuidado, si tiene eventos no se ejecutan)
+				Destroy (coll.gameObject);
+
+				// El alien desaparece (no hace falta retraso para la explosión, está en otro objeto)
+				efectoExplosion.GetComponent<AudioSource> ().Play ();
+				Destroy (gameObject);
+
+
+			}else if (gameObject.tag == "alien3") {
+				// Sonido de explosión
+				GetComponent<AudioSource> ().Play ();
+
+				// Sumar la puntuación al marcador
+				marcador.GetComponent<ControlMarcador> ().puntos += puntos3;
+
+				// El disparo desaparece (cuidado, si tiene eventos no se ejecutan)
+				Destroy (coll.gameObject);
+
+				// El alien desaparece (no hace falta retraso para la explosión, está en otro objeto)
+				efectoExplosion.GetComponent<AudioSource> ().Play ();
+				Destroy (gameObject);
+
+
+			}
+
+			} else if (coll.gameObject.tag == "nave") {
+				SceneManager.LoadScene ("Nivel1");
+			}
+			
+
+
+
 	}
-}
+	}

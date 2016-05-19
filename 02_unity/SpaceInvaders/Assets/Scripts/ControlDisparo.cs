@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ControlDisparo : MonoBehaviour
 {
+	
 
 	// Use this for initialization
 	void Start ()
@@ -18,4 +19,6 @@ public class ControlDisparo : MonoBehaviour
 			Destroy (gameObject);
 		}	
 	}
+
+	
 }
