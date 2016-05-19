@@ -95,7 +95,7 @@ public class ControlNave : MonoBehaviour
                    var aliens = GameObject.FindGameObjectsWithTag("alien");
                 foreach (GameObject a in aliens) { 
 
-            a.GetComponent<ControlAlien>().velocidad = 0;
+				a.GetComponent<ControlAlien> ().enabled = false;
      }
             // destruir nave
             Destroy (gameObject);
