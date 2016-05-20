@@ -42,6 +42,7 @@ public class ControlAlien : MonoBehaviour
 		if (coll.gameObject.tag == "disparo") {
 
 			if (gameObject.tag == "alien1") {
+				
 				// Sonido de explosión
 				GetComponent<AudioSource> ().Play ();
 
@@ -53,7 +54,7 @@ public class ControlAlien : MonoBehaviour
 
 				// El alien desaparece (no hace falta retraso para la explosión, está en otro objeto)
 				efectoExplosion.GetComponent<AudioSource> ().Play ();
-				Destroy (gameObject);
+				Destroy (gameObject);	
 			} else if (gameObject.tag == "alien2") {
 				// Sonido de explosión
 				GetComponent<AudioSource> ().Play ();
