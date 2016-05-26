@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Mover : MonoBehaviour
+public class moover : MonoBehaviour
 {
     public Rigidbody rb;
-    public float speed = 90;
+    public float speed = 2;
 
     void Start()
     {
