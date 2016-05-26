@@ -3,20 +3,13 @@ using System.Collections;
 
 
 [System.Serializable]
-public class armas
-{
-    //Tipos de armas
-    public GameObject laser;
-    public GameObject slaser;
-    public GameObject flame;
-    public GameObject mine;
-}
-
-[System.Serializable]
 public class Boundary
 {
-    public float xMin, xMax, zMin, zMax;
-    
+    public float xMin = -13;
+    public float xMax = 13;
+
+    public float zMin = -7;
+    public float zMax = 7;
 }
 
 
@@ -28,22 +21,26 @@ public class PlayerController : MonoBehaviour
     {
         //inicializar el rigidbody
         rb = GetComponent<Rigidbody>();
-        munition = armas.mine;
+        munition = laser;
 
     }
 
 
-    public float speed;
-    public float tilt;
+    public float speed = 15;
+    public float tilt = 3;
     public Boundary boundary;
-    public armas armas;
     private Rigidbody rb;
     private GameObject munition;
+    //Tipos de armas
+    public GameObject laser;
+    public GameObject slaser;
+    public GameObject flame;
+    public GameObject mine;
 
     private Rigidbody llama;
     public Transform disparador;
-    private float cadencia = 3f;
-    private int armamento = 3;
+    private float cadencia = 0.5f;
+    private int armamento = 1;
     private float nextFire = 1;
 
     void Update()
@@ -84,11 +81,28 @@ public class PlayerController : MonoBehaviour
             
         }
 
-        
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (armamento == 1)
+            {
+                        munition = slaser;
+                        armamento = 2;
+                        cadencia = 0.7f;
 
+            }else{
+
+                    munition = laser;
+                    armamento = 1;
+                    cadencia = 0.5f;
+
+            }
+
+        }
 
     }
+
+     
 
     void FixedUpdate()
     {
@@ -97,8 +111,6 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.velocity = movement * speed;
-        llama.velocity = movement * speed;
-
         rb.position = new Vector3
             
         (
@@ -106,14 +118,6 @@ public class PlayerController : MonoBehaviour
             0.0f,
             Mathf.Clamp(rb.position.z, boundary.zMin, boundary.zMax)
         );
-
-        llama.position = new Vector3
-             (
-            Mathf.Clamp(rb.position.x, boundary.xMin, boundary.xMax),
-            0.0f,
-            Mathf.Clamp(rb.position.z, boundary.zMin, boundary.zMax)
-        );
-
 
         rb.rotation = Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * -tilt);
     }
@@ -163,22 +167,22 @@ public class PlayerController : MonoBehaviour
             switch (coll.gameObject.name)
             {
                 case "laser":
-                    munition = armas.laser;
+                    munition = laser;
                     armamento = 1;
                     cadencia = 1;
                     break;
                 case "slaser":
-                    munition = armas.slaser;
+                    munition = slaser;
                     armamento = 2;
                     cadencia = 1.5f;
                     break;
                 case "flame":
-                    munition = armas.flame;
+                    munition = flame;
                     armamento = 3;
                     cadencia = 11;
                     break;
                 case "mine":
-                    munition = armas.mine;
+                    munition = mine;
                     armamento = 4;
                     cadencia = 2;
                     break;

@@ -4,13 +4,13 @@ using System.Collections;
 [System.Serializable]
 public class Done_Boundary 
 {
-	public float xMin, xMax, zMin, zMax;
+	public float xMin = -13, xMax = 13, zMin = -7, zMax = 7;
 }
 
 public class Done_PlayerController : MonoBehaviour
 {
-	public float speed;
-	public float tilt;
+	public float speed = 18;
+	public float tilt = 3;
 	public Done_Boundary boundary;
 
 	public GameObject shot;
