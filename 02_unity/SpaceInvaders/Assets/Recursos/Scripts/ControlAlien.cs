@@ -50,7 +50,7 @@ public class ControlAlien : MonoBehaviour
             Destroy(coll.gameObject);
 
             // El alien desaparece (no hace falta retraso para la explosión, está en otro objeto)
-            efectoExplosion.GetComponent<AudioSource>().Play();
+            //efectoExplosion.GetComponent<AudioSource>().Play();
             Destroy(gameObject);
 
         }

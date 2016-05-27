@@ -7,12 +7,12 @@ using System;
 
 public class boss : MonoBehaviour {
 
-    public GeneradorAliens[] gg = new GeneradorAliens[10];
+    public GeneradorAliens2[] gg = new GeneradorAliens2[10];
     public float nextWave = 1;
     public float thisWave = 1;
-    private int life = 150;
+    public int life ;
     private int wave = 0;
-
+    private AudioSource[] rll = new AudioSource[2];
     private enum direccion { IZQ, DER };
 
     // Rumbo que lleva el pack de aliens
@@ -27,6 +27,7 @@ public class boss : MonoBehaviour {
 
     // Conexión al marcador, para poder actualizarlo
     private GameObject marcador;
+    private GameObject vida;
     private Rigidbody2D rb;
     // Por defecto, 100 puntos por cada alien
     private int puntos = 50;
@@ -36,12 +37,19 @@ public class boss : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
+        if (life == null)
+        {
+            life = 150;
+        }
+
+        AudioSource[] rll = GetComponents<AudioSource>();
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         // Localizamos el objeto que contiene el marcador
         marcador = GameObject.Find("Marcador");
+        vida = GameObject.Find("vida");
     // Objeto para reproducir la explosión de un alien
     efectoExplosion = GameObject.Find("EfectoExplosion");
+        vida.GetComponent<ControlMarcador>().puntos += life;
     }
 	
     
@@ -118,28 +126,32 @@ void Update () {
         if (coll.gameObject.tag == "disparo")
         {
 
-            // Sonido de explosión
-            GetComponent<AudioSource>().Play();
+            // Sonido de impacto
 
-            // Sumar la puntuación al marcador
-            marcador.GetComponent<ControlMarcador>().puntos += puntos;
+
 
             // El disparo desaparece (cuidado, si tiene eventos no se ejecutan)
             Destroy(coll.gameObject);
 
-            // El alien desaparece (no hace falta retraso para la explosión, está en otro objeto)
-            efectoExplosion.GetComponent<AudioSource>().Play();
+           
 
             if (life == 0)
             {
+                // Sumar la puntuación al marcador
                 Destroy(gameObject);
             }
 
-            life --;
+            // Sumar la puntuación al marcador
+            marcador.GetComponent<ControlMarcador>().puntos += puntos;
+            vida.GetComponent<ControlMarcador>().puntos = life;
+            life  = life - 1;
+
+            // Sumar la puntuación al marcador
+            //marcador.GetComponent<ControlMarcador>().puntos += puntos;
         }
         else if (coll.gameObject.tag == "nave")
         {
-            SceneManager.LoadScene("Nivel1");
+            SceneManager.LoadScene("menu");
         }
     }
 

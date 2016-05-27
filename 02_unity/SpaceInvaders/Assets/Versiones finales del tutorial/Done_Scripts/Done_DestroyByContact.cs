@@ -46,9 +46,11 @@ public class Done_DestroyByContact : MonoBehaviour
             //Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
             
             Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
-            gameController.GameOver();
+            print("kkkkkkkkkkkkkkkk");
             Destroy(other.gameObject);
-            //gameController.GameOver()
+            gameController.GameOver();
+            
+
         }
 
 
