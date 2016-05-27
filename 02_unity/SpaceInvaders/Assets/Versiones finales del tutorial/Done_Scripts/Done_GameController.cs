@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Done_GameController : MonoBehaviour
 {
@@ -31,11 +32,12 @@ public class Done_GameController : MonoBehaviour
 	
 	void Update ()
 	{
-		if (restart)
+
+        if (restart)
 		{
 			if (Input.GetKeyDown (KeyCode.R))
 			{
-				Application.LoadLevel (Application.loadedLevel);
+                SceneManager.LoadScene("Nivel00");
 			}
 		}
 	}

@@ -33,14 +33,21 @@ public class Done_DestroyByContact : MonoBehaviour
 			Instantiate(explosion, transform.position, transform.rotation);
 		}
 
-		if (other.tag == "Player")
+		if (other.tag == "Disparo")
 		{
-			Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
-			gameController.GameOver();
-		}
-		
-		gameController.AddScore(scoreValue);
-		Destroy (other.gameObject);
+			//Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
+			//gameController.GameOver()
+             gameController.AddScore(scoreValue);
+        }
+
+        if (other.tag == "Player")
+        {
+            Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
+            gameController.GameOver();
+            Destroy(other.gameObject);
+        }
+        
+        
 		Destroy (gameObject);
 	}
 }
