@@ -19,7 +19,7 @@ public class Done_DestroyByContact : MonoBehaviour
 		{
 			Debug.Log ("Cannot find 'GameController' script");
 		}
-	}
+    }
 
 	void OnTriggerEnter (Collider other)
 	{
@@ -36,18 +36,22 @@ public class Done_DestroyByContact : MonoBehaviour
 		if (other.tag == "Disparo")
 		{
 			//Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
-			//gameController.GameOver()
+		
              gameController.AddScore(scoreValue);
+            Destroy(other.gameObject);
         }
 
         if (other.tag == "Player")
         {
+            //Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
+            
             Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
             gameController.GameOver();
             Destroy(other.gameObject);
+            //gameController.GameOver()
         }
-        
-        
-		Destroy (gameObject);
+
+
+        Destroy (gameObject);
 	}
 }
