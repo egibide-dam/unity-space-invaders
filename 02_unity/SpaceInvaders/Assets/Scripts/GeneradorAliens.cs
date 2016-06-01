@@ -7,6 +7,9 @@ public class GeneradorAliens : MonoBehaviour
 
 	// Publicamos la variable para conectarla desde el editor
 	public Rigidbody2D prefabAlien1;
+	public Rigidbody2D prefabAlien2;
+	public Rigidbody2D prefabAlien3;
+
 
 	// Referencia para guardar una matriz de objetos
 	private Rigidbody2D[,] aliens;
@@ -30,6 +33,7 @@ public class GeneradorAliens : MonoBehaviour
 
 	// Velocidad a la que se desplazan los aliens (medido en u/s)
 	private float velocidad = 5f;
+
 
 	// Use this for initialization
 	void Start ()
@@ -117,11 +121,11 @@ public class GeneradorAliens : MonoBehaviour
 	void generarAliens (int filas, int columnas, float espacioH, float espacioV, float escala = 1.0f)
 	{
 		/* Creamos una rejilla de aliens a partir del punto de origen
-		 * 
-		 * Ejemplo (2,5):
-		 *   A A A A A
-		 *   A A O A A
-		 */
+         * 
+         * Ejemplo (2,5):
+         *   A A A A A
+         *   A A O A A
+         */
 
 		// Calculamos el punto de origen de la rejilla
 		Vector2 origen = new Vector2 (transform.position.x - (columnas / 2.0f) * espacioH + (espacioH / 2), transform.position.y);
@@ -132,19 +136,49 @@ public class GeneradorAliens : MonoBehaviour
 		// Fabricamos un alien en cada posición del array
 		for (int i = 0; i < filas; i++) {
 			for (int j = 0; j < columnas; j++) {
+				
+				//fabricamos alien1 que ocupa 2 filas,alien2 1 fila y alien3 1 fila
+				if (i==0 || i==1) {
+					Vector2 posicion = new Vector2 (origen.x + (espacioH * j), origen.y + (espacioV * i));
 
-				// Posición de cada alien
-				Vector2 posicion = new Vector2 (origen.x + (espacioH * j), origen.y + (espacioV * i));
+					// Instanciamos el objeto partiendo del prefab
+					Rigidbody2D alien = (Rigidbody2D)Instantiate (prefabAlien1, posicion, transform.rotation);
 
-				// Instanciamos el objeto partiendo del prefab
-				Rigidbody2D alien = (Rigidbody2D)Instantiate (prefabAlien1, posicion, transform.rotation);
+					// Guardamos el alien en el array
+					aliens [i, j] = alien;
 
-				// Guardamos el alien en el array
-				aliens [i, j] = alien;
+					// Escala opcional, por defecto 1.0f (sin escala)
+					// Nota: El prefab original ya está escalado a 0.2f
+					alien.transform.localScale = new Vector2 (0.2f * escala, 0.2f * escala);
+				
+				}else if (i == 2 ) {
+					Vector2 posicion = new Vector2 (origen.x + (espacioH * j), origen.y + (espacioV * i));
 
-				// Escala opcional, por defecto 1.0f (sin escala)
-				// Nota: El prefab original ya está escalado a 0.2f
-				alien.transform.localScale = new Vector2 (0.2f * escala, 0.2f * escala);
+					// Instanciamos el objeto partiendo del prefab
+					Rigidbody2D alien = (Rigidbody2D)Instantiate (prefabAlien2, posicion, transform.rotation);
+
+					// Guardamos el alien en el array
+					aliens [i, j] = alien;
+
+					// Escala opcional, por defecto 1.0f (sin escala)
+					// Nota: El prefab original ya está escalado a 0.2f
+					alien.transform.localScale = new Vector2 (0.2f * escala, 0.2f * escala);
+				} else if (i == 3 ) {
+					Vector2 posicion = new Vector2 (origen.x + (espacioH * j), origen.y + (espacioV * i));
+
+					// Instanciamos el objeto partiendo del prefab
+					Rigidbody2D alien = (Rigidbody2D)Instantiate (prefabAlien3, posicion, transform.rotation);
+
+					// Guardamos el alien en el array
+					aliens [i, j] = alien;
+
+					// Escala opcional, por defecto 1.0f (sin escala)
+					// Nota: El prefab original ya está escalado a 0.2f
+					alien.transform.localScale = new Vector2 (0.2f * escala, 0.2f * escala);
+				}
+
+
+
 			}
 		}
 
