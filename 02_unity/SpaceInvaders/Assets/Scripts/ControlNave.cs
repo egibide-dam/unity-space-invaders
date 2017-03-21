@@ -55,6 +55,10 @@ public class ControlNave : MonoBehaviour
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			disparar ();
 		}
+
+		if (Input.GetKeyDown (KeyCode.V)) {
+			disparartriple ();
+		}
 	}
 
 	void disparar ()
@@ -71,5 +75,31 @@ public class ControlNave : MonoBehaviour
 		// Lanzarlo
 		d.AddForce (Vector2.up * fuerza, ForceMode2D.Impulse);	
 	}
+	void disparartriple ()
+	{
+		
+		// Hacemos copias del prefab del disparo y las lanzamos
+		Rigidbody2D d = (Rigidbody2D)Instantiate (disparo, transform.position, transform.rotation);
+		Rigidbody2D e = (Rigidbody2D)Instantiate (disparo, transform.position, transform.rotation);
+		Rigidbody2D f = (Rigidbody2D)Instantiate (disparo, transform.position, transform.rotation);
+
+		// Desactivar la gravedad para este objeto, si no, ¡se cae!
+		d.gravityScale = 0;
+		e.gravityScale = 0;
+		f.gravityScale = 0;
+
+		// Posición de partida, en la punta de la nave
+		d.transform.Translate (Vector2.up * 0.7f);
+		e.transform.Translate (Vector2.left * 0.7f);
+		f.transform.Translate (Vector2.right * 0.7f);
+
+		// Lanzarlo
+		d.AddForce (Vector2.up * fuerza, ForceMode2D.Impulse);	
+		e.AddForce (new Vector2(-1,2) * fuerza, ForceMode2D.Impulse);	
+		f.AddForce (new Vector2(1,2) * fuerza, ForceMode2D.Impulse);	
+
+	
+	}
+
 
 }

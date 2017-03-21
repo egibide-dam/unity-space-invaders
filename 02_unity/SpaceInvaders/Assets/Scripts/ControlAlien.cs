@@ -26,7 +26,7 @@ public class ControlAlien : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-	
+	 
 	}
 
 	void OnCollisionEnter2D (Collision2D coll)
@@ -38,7 +38,14 @@ public class ControlAlien : MonoBehaviour
 
 			// Sonido de explosión
 			GetComponent<AudioSource> ().Play ();
-
+			switch (this.tag) {
+			case "alien1":
+				puntos = puntos * 1;
+					break;
+			case "alien2":
+				puntos = puntos * 2;
+					break;
+			}
 			// Sumar la puntuación al marcador
 			marcador.GetComponent<ControlMarcador> ().puntos += puntos;
 
