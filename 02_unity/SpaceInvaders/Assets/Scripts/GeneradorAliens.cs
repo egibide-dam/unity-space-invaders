@@ -7,15 +7,17 @@ public class GeneradorAliens : MonoBehaviour
 
 	// Publicamos la variable para conectarla desde el editor
 	public Rigidbody2D prefabAlien1;
-	//segundo prefab
+
 	public Rigidbody2D prefabAlien2;
+
+	public Rigidbody2D prefabAlien3;
 
 	// Referencia para guardar una matriz de objetos
 	private Rigidbody2D[,] aliens;
 
 	// Tamaño de la invasión alienígena
 	private const int FILAS = 4;
-	private const int COLUMNAS = 7;
+	private const int COLUMNAS = 8;
 
 	// Enumeración para expresar el sentido del movimiento
 	private enum direccion { IZQ, DER };
@@ -98,9 +100,12 @@ public class GeneradorAliens : MonoBehaviour
 				SceneManager.LoadScene ("Nivel2");
 				break;
 			case "Nivel2":
-				SceneManager.LoadScene ("Nivel2");
+				SceneManager.LoadScene ("Nivel3");
 				break;
-			}
+			case "Nivel3":
+				SceneManager.LoadScene ("Nivel1");
+			break;
+		}
 		}
 
 		// Si al menos un alien ha tocado el borde, todo el pack cambia de rumbo
@@ -147,13 +152,7 @@ public class GeneradorAliens : MonoBehaviour
 				
 				switch (SceneManager.GetActiveScene().name) 
 				{
-				case "Nivel2":
-					if (i % 2 != 0) {
-						origen = new Vector2 (transform.position.x - (columnas / 2.0f) * espacioH + (espacioH / 2), transform.position.y);
 
-					}else origen = new Vector2 (transform.position.x - (columnas / 3.0f) * espacioH + (espacioH / 2), transform.position.y);
-
-					break;
 				case "Nivel1":
 					if (i % 2 != 0) {
 						origen = new Vector2 (transform.position.x - (columnas / 3.0f) * espacioH + (espacioH / 2), transform.position.y);
@@ -161,11 +160,26 @@ public class GeneradorAliens : MonoBehaviour
 					}else origen = new Vector2 (transform.position.x - (columnas / 4.0f) * espacioH + (espacioH / 2), transform.position.y);
 
 					break;
-				}
+
+				case "Nivel2":
+					if (i % 2 != 0) {
+						origen = new Vector2 (transform.position.x - (columnas / 2.0f) * espacioH + (espacioH / 2), transform.position.y);
+
+					}else origen = new Vector2 (transform.position.x - (columnas / 3.0f) * espacioH + (espacioH / 2), transform.position.y);
+
+					break;
 				
+				case "Nivel3":
+		
+					origen = new Vector2 (transform.position.x - (columnas / 2.0f) * espacioH + (espacioH / 2), transform.position.y);
+
+
+				break;
+				}
+
 				// Posición de cada alien
 
-				Vector2 posicion = new Vector2 (origen.x + (espacioH * j), origen.y + (espacioV * i));
+				Vector3 posicion = new Vector3 (origen.x + (espacioH * j), origen.y + (espacioV * i), 1);
 
 				Rigidbody2D alien = null;
 
@@ -176,6 +190,9 @@ public class GeneradorAliens : MonoBehaviour
 					break;
 				case "Nivel2":
 					alien = (Rigidbody2D)Instantiate (prefabAlien2, posicion, transform.rotation);
+					break;
+				case "Nivel3":
+					alien = (Rigidbody2D)Instantiate (prefabAlien3, posicion, transform.rotation);
 					break;
 				}
 					
