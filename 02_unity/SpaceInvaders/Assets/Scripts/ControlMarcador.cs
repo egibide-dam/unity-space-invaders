@@ -18,6 +18,7 @@ public class ControlMarcador : MonoBehaviour
 	{
 		// Localizamos el componente del UI
 		t = puntuacion.GetComponent<Text> ();
+		puntos = PlayerPrefs.GetInt ("puntos");
 	}
 	
 	// Update is called once per frame
@@ -25,6 +26,7 @@ public class ControlMarcador : MonoBehaviour
 	{
 		// Actualizamos el marcador
 		t.text = "Puntos: " + puntos.ToString () + "\n";
+		PlayerPrefs.SetInt ("puntos", puntos);
 	}
 
 }
