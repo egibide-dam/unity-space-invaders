@@ -1,7 +1,8 @@
-### https://raw.github.com/github/gitignore/8edb8a95c4c4b3dce71a378aaaf89275510b9cef/Global/Windows.gitignore
+### https://raw.github.com/github/gitignore/599646e9d0a26283d67715dead8f26e0eb2df753/Global/Windows.gitignore
 
 # Windows thumbnail cache files
 Thumbs.db
+Thumbs.db:encryptable
 ehthumbs.db
 ehthumbs_vista.db
 
@@ -9,7 +10,7 @@ ehthumbs_vista.db
 *.stackdump
 
 # Folder config file
-Desktop.ini
+[Dd]esktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
@@ -17,6 +18,7 @@ $RECYCLE.BIN/
 # Windows Installer files
 *.cab
 *.msi
+*.msix
 *.msm
 *.msp
 
@@ -24,7 +26,7 @@ $RECYCLE.BIN/
 *.lnk
 
 
-### https://raw.github.com/github/gitignore/8edb8a95c4c4b3dce71a378aaaf89275510b9cef/Global/Linux.gitignore
+### https://raw.github.com/github/gitignore/599646e9d0a26283d67715dead8f26e0eb2df753/Global/Linux.gitignore
 
 *~
 
@@ -41,10 +43,10 @@ $RECYCLE.BIN/
 .nfs*
 
 
-### https://raw.github.com/github/gitignore/8edb8a95c4c4b3dce71a378aaaf89275510b9cef/Global/macOS.gitignore
+### https://raw.github.com/github/gitignore/599646e9d0a26283d67715dead8f26e0eb2df753/Global/macOS.gitignore
 
 # General
-*.DS_Store
+.DS_Store
 .AppleDouble
 .LSOverride
 
