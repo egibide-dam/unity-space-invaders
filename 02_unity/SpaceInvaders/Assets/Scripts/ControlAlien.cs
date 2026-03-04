@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class ControlAlien : MonoBehaviour
@@ -8,7 +7,7 @@ public class ControlAlien : MonoBehaviour
     private GameObject marcador;
 
     // Por defecto, 100 puntos por cada alien
-    private int puntos = 100;
+    private readonly int puntos = 100;
 
     // Objeto para reproducir la explosión de un alien
     private GameObject efectoExplosion;
@@ -34,9 +33,8 @@ public class ControlAlien : MonoBehaviour
         // Detectar la colisión entre el alien y otros elementos
 
         // Necesitamos saber contra qué hemos chocado
-        if (coll.gameObject.tag == "disparo")
+        if (coll.gameObject.CompareTag("disparo"))
         {
-
             // Sonido de explosión
             GetComponent<AudioSource>().Play();
 

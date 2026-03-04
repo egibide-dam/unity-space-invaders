@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.InputSystem;
 
 public class ControlCamara : MonoBehaviour
 {
@@ -7,7 +7,7 @@ public class ControlCamara : MonoBehaviour
     private GameObject alien;
 
     // Velocidad a la que se desplaza el alien
-    private float velocidad = 20f;
+    private readonly float velocidad = 20f;
 
     // Use this for initialization
     void Start()
@@ -19,16 +19,19 @@ public class ControlCamara : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var keyboard = Keyboard.current;
+        if (keyboard == null) return;
+
         // Tecla: Izquierda
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (keyboard.leftArrowKey.isPressed)
         {
-            alien.transform.Translate(Vector2.left * velocidad * Time.deltaTime);
+            alien.transform.Translate(Time.deltaTime * velocidad * Vector2.left);
         }
 
         // Tecla: Derecha
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (keyboard.rightArrowKey.isPressed)
         {
-            alien.transform.Translate(Vector2.right * velocidad * Time.deltaTime);
+            alien.transform.Translate(Time.deltaTime * velocidad * Vector2.right);
         }
     }
 }
