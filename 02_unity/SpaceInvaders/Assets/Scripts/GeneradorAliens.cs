@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class GeneradorAliens : MonoBehaviour
 {
-
     // Publicamos la variable para conectarla desde el editor
     public Rigidbody2D prefabAlien1;
 
@@ -16,20 +14,20 @@ public class GeneradorAliens : MonoBehaviour
     private const int COLUMNAS = 7;
 
     // Enumeración para expresar el sentido del movimiento
-    private enum direccion { IZQ, DER };
+    private enum Direccion { IZQ, DER };
 
     // Rumbo que lleva el pack de aliens
-    private direccion rumbo = direccion.DER;
+    private Direccion rumbo = Direccion.DER;
 
     // Posición vertical de la horda (lo iremos restando de la .y de cada alien)
-    private float altura = 0.5f;
+    private readonly float altura = 0.5f;
 
     // Límites de la pantalla
     private float limiteIzq;
     private float limiteDer;
 
     // Velocidad a la que se desplazan los aliens (medido en u/s)
-    private float velocidad = 5f;
+    private readonly float velocidad = 5f;
 
     // Use this for initialization
     void Start()
@@ -59,7 +57,6 @@ public class GeneradorAliens : MonoBehaviour
         {
             for (int j = 0; j < COLUMNAS; j++)
             {
-
                 // Comprobamos que haya objeto, para cuando nos empiecen a disparar
                 if (aliens[i, j] != null)
                 {
@@ -68,9 +65,8 @@ public class GeneradorAliens : MonoBehaviour
                     numAliens += 1;
 
                     // ¿Vamos a izquierda o derecha?
-                    if (rumbo == direccion.DER)
+                    if (rumbo == Direccion.DER)
                     {
-
                         // Nos movemos a la derecha (todos los aliens que queden)
                         aliens[i, j].transform.Translate(Vector2.right * velocidad * Time.deltaTime);
 
@@ -82,7 +78,6 @@ public class GeneradorAliens : MonoBehaviour
                     }
                     else
                     {
-
                         // Nos movemos a la derecha (todos los aliens que queden)
                         aliens[i, j].transform.Translate(Vector2.left * velocidad * Time.deltaTime);
 
@@ -118,14 +113,13 @@ public class GeneradorAliens : MonoBehaviour
                 }
             }
 
-
-            if (rumbo == direccion.DER)
+            if (rumbo == Direccion.DER)
             {
-                rumbo = direccion.IZQ;
+                rumbo = Direccion.IZQ;
             }
             else
             {
-                rumbo = direccion.DER;
+                rumbo = Direccion.DER;
             }
         }
     }
@@ -165,7 +159,5 @@ public class GeneradorAliens : MonoBehaviour
                 alien.transform.localScale = new Vector2(0.2f * escala, 0.2f * escala);
             }
         }
-
     }
-
 }
