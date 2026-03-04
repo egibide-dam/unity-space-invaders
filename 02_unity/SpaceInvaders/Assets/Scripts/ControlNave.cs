@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.InputSystem;
 
 public class ControlNave : MonoBehaviour
 {
-
     // Velocidad a la que se desplaza la nave (medido en u/s)
-    private float velocidad = 20f;
+    private readonly float velocidad = 20f;
 
     // Use this for initialization
     void Start()
@@ -23,10 +22,12 @@ public class ControlNave : MonoBehaviour
         float limiteIzq = -1.0f * distanciaHorizontal;
         float limiteDer = 1.0f * distanciaHorizontal;
 
-        // Tecla: Izquierda
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
+        var keyboard = Keyboard.current;
+        if (keyboard == null) return;
 
+        // Tecla: Izquierda
+        if (keyboard.leftArrowKey.isPressed)
+        {
             // Nos movemos a la izquierda hasta llegar al límite para entrar por el otro lado
             if (transform.position.x > limiteIzq)
             {
@@ -39,9 +40,8 @@ public class ControlNave : MonoBehaviour
         }
 
         // Tecla: Derecha
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (keyboard.rightArrowKey.isPressed)
         {
-
             // Nos movemos a la derecha hasta llegar al límite para entrar por el otro lado
             if (transform.position.x < limiteDer)
             {
@@ -54,7 +54,7 @@ public class ControlNave : MonoBehaviour
         }
 
         // Disparo
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (keyboard.spaceKey.wasPressedThisFrame)
         {
             disparar();
         }
