@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class ControlAlien : MonoBehaviour
 {
@@ -27,9 +26,8 @@ public class ControlAlien : MonoBehaviour
         // Detectar la colisión entre el alien y otros elementos
 
         // Necesitamos saber contra qué hemos chocado
-        if (coll.gameObject.tag == "disparo")
+        if (coll.gameObject.CompareTag("disparo"))
         {
-
             // Sumar la puntuación al marcador
             marcador.GetComponent<ControlMarcador>().puntos += puntos;
 
