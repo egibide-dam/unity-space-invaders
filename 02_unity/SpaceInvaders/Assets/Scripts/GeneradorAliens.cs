@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class GeneradorAliens : MonoBehaviour
 {
@@ -30,7 +29,7 @@ public class GeneradorAliens : MonoBehaviour
 		 */
 
         // Calculamos el punto de origen de la rejilla
-        Vector2 origen = new Vector2(transform.position.x - (columnas / 2.0f) * espacioH + (espacioH / 2), transform.position.y);
+        Vector2 origen = new(transform.position.x - (columnas / 2.0f) * espacioH + (espacioH / 2), transform.position.y);
 
         // Generamos los objetos
         for (int i = 0; i < filas; i++)
@@ -38,7 +37,7 @@ public class GeneradorAliens : MonoBehaviour
             for (int j = 0; j < columnas; j++)
             {
                 // Posición de cada alien
-                Vector2 posicion = new Vector2(origen.x + (espacioH * j), origen.y + (espacioV * i));
+                Vector2 posicion = new(origen.x + (espacioH * j), origen.y + (espacioV * i));
 
                 // Instanciamos el objeto partiendo del prefab
                 Rigidbody2D alien = (Rigidbody2D)Instantiate(prefabAlien1, posicion, transform.rotation);
