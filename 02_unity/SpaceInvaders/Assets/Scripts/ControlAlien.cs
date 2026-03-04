@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class ControlAlien : MonoBehaviour
 {
-
     // Use this for initialization
     void Start()
     {
@@ -21,7 +19,7 @@ public class ControlAlien : MonoBehaviour
         // Detectar la colisión entre el alien y otros elementos
 
         // Necesitamos saber contra qué hemos chocado
-        if (coll.gameObject.tag == "disparo")
+        if (coll.gameObject.CompareTag("disparo"))
         {
 
             // El disparo desaparece (cuidado, si tiene eventos no se ejecutan)
