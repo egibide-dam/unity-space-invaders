@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.InputSystem;
 
 public class ControlNave : MonoBehaviour
 {
-
     // Velocidad a la que se desplaza la nave (medido en u/s)
-    private float velocidad = 20f;
+    private readonly float velocidad = 20f;
 
     // Fuerza de lanzamiento del disparo
-    private float fuerza = 0.5f;
+    private readonly float fuerza = 0.5f;
 
     // Acceso al prefab del disparo
     public Rigidbody2D disparo;
@@ -29,10 +28,12 @@ public class ControlNave : MonoBehaviour
         float limiteIzq = -1.0f * distanciaHorizontal;
         float limiteDer = 1.0f * distanciaHorizontal;
 
-        // Tecla: Izquierda
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
+        var keyboard = Keyboard.current;
+        if (keyboard == null) return;
 
+        // Tecla: Izquierda
+        if (keyboard.leftArrowKey.isPressed)
+        {
             // Nos movemos a la izquierda hasta llegar al límite para entrar por el otro lado
             if (transform.position.x > limiteIzq)
             {
@@ -45,9 +46,8 @@ public class ControlNave : MonoBehaviour
         }
 
         // Tecla: Derecha
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (keyboard.rightArrowKey.isPressed)
         {
-
             // Nos movemos a la derecha hasta llegar al límite para entrar por el otro lado
             if (transform.position.x < limiteDer)
             {
@@ -60,13 +60,13 @@ public class ControlNave : MonoBehaviour
         }
 
         // Disparo
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (keyboard.spaceKey.wasPressedThisFrame)
         {
-            disparar();
+            Disparar();
         }
     }
 
-    void disparar()
+    void Disparar()
     {
         // Hacemos copias del prefab del disparo y las lanzamos
         Rigidbody2D d = (Rigidbody2D)Instantiate(disparo, transform.position, transform.rotation);
@@ -80,5 +80,4 @@ public class ControlNave : MonoBehaviour
         // Lanzarlo
         d.AddForce(Vector2.up * fuerza, ForceMode2D.Impulse);
     }
-
 }

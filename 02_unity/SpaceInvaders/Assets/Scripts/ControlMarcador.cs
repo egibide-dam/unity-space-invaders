@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class ControlMarcador : MonoBehaviour
 {
-
     // Puntos ganados en la partida
     public int puntos = 0;
 
@@ -26,5 +24,4 @@ public class ControlMarcador : MonoBehaviour
         // Actualizamos el marcador
         t.text = "Puntos: " + puntos.ToString() + "\n";
     }
-
 }

@@ -29,7 +29,6 @@ public class ControlAlien : MonoBehaviour
         // Necesitamos saber contra qué hemos chocado
         if (coll.gameObject.tag == "disparo")
         {
-
             // Sonido de explosión
             GetComponent<AudioSource>().Play();
 

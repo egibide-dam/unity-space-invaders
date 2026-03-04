@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class ControlDisparo : MonoBehaviour
 {
-
     // Use this for initialization
     void Start()
     {
